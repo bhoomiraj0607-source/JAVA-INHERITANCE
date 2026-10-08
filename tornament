@@ -1,0 +1,46 @@
+package tornament1;
+
+import java.util.*;
+
+public class tornament {
+
+    public static void main(String[] args) {
+
+        Map<String, Integer> m = new LinkedHashMap<>();
+
+        m.put("Rahul", 85);
+        m.put("Priya", 95);
+        m.put("Arjun", 72);
+        m.put("Sneha", 95);
+        m.put("Kiran", 88);
+
+        List<Map.Entry<String, Integer>> l =
+                new ArrayList<>(m.entrySet());
+
+        l.sort((a, b) -> b.getValue() - a.getValue());
+
+        System.out.println("Tournament Leaderboard");
+
+        for (Map.Entry<String, Integer> x : l)
+            System.out.println(x.getKey() + " : " + x.getValue());
+
+        System.out.println("\nHighest Score: " +
+                Collections.max(m.values()));
+
+        m.remove("Arjun");
+
+        l = new ArrayList<>(m.entrySet());
+        l.sort((a, b) -> b.getValue() - a.getValue());
+
+        System.out.println("\nAfter Removing Arjun:");
+
+        for (Map.Entry<String, Integer> x : l)
+            System.out.println(x.getKey() + " : " + x.getValue());
+        System.out.println("\nSorted by Name:");
+
+        l.sort((a, b) -> a.getKey().compareTo(b.getKey()));
+
+        for (Map.Entry<String, Integer> x : l)
+            System.out.println(x.getKey() + " : " + x.getValue());
+    }
+}
