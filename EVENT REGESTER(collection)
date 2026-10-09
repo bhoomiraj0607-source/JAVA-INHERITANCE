@@ -1,0 +1,79 @@
+package collecteve;
+	
+		import java.util.HashMap;
+		import java.util.Map;
+		import java.util.Scanner;
+
+		public class Main1 {
+		    public static void main(String[] args) {
+
+		        Scanner sc = new Scanner(System.in);
+		        HashMap<String, String> students = new HashMap<>();
+
+		        while (true) {
+		            System.out.println("\n===== EVENT REGISTRATION =====");
+		            System.out.print("Enter ROLL NO (or EXIT to finish): ");
+		            String id = sc.next().toUpperCase();
+
+		            if (id.equals("EXIT")) {
+		                break;
+		            }
+
+		            if (!id.matches("RNO\\d+")) {
+		                System.out.println("Invalid ROLL NO! Example: RNO123");
+		                continue;
+		            }
+
+		            if (students.containsKey(id)) {
+		                System.out.println("ERROR: ROLL NO already exists!");
+		                continue;
+		            }
+
+		            System.out.println("\n1. Hakaton");
+		            System.out.println("2. Technical quiz");
+		            System.out.println("3. project expo");
+		            System.out.print("Enter Event number: ");
+
+		            int choice = sc.nextInt();
+		            String Event;
+
+		            switch (choice) {
+		                case 1:
+		                    Event = "Hakaton";
+		                    break;
+		                case 2:
+		                    Event = "Technical quiz";
+		                    break;
+		                case 3:
+		                    Event = "project expo";
+		                    break;
+		                default:
+		                    System.out.println("Invalid roll no number!");
+		                    continue;
+		            }
+
+		            System.out.println("Selected Event: " + Event);
+
+		            students.put(id, Event);
+		            System.out.println("Registration Successful!");
+		        }
+
+		        // Display final table
+		        System.out.println("\n==================================");
+		        System.out.println("       EVENT REGISTRATION");
+		        System.out.println("==================================");
+
+		        System.out.printf("%-15s | %-15s%n", "AF ID", "EVENT");
+		        System.out.println("----------------------------------");
+
+		        for (Map.Entry<String, String> entry : students.entrySet()) {
+		            System.out.printf("%-15s | %-15s%n",
+		                    entry.getKey(), entry.getValue());
+		        }
+
+		        System.out.println("==================================");
+		        System.out.println("Total Registrations: " + students.size());
+
+		        sc.close();
+		    }
+		}
